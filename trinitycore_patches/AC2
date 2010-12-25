@@ -1,6 +1,6 @@
-diff -r 62fe9c3f7aa8 src/server/game/Entities/Player/Player.cpp
---- a/src/server/game/Entities/Player/Player.cpp	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Entities/Player/Player.cpp	Tue Dec 21 18:29:45 2010 +0600
+diff -r 04ce0858ce41 src/server/game/Entities/Player/Player.cpp
+--- a/src/server/game/Entities/Player/Player.cpp	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Entities/Player/Player.cpp	Fri Dec 24 20:34:17 2010 +0600
 @@ -519,6 +519,26 @@
      rest_type=REST_TYPE_NO;
      ////////////////////Rest System/////////////////////
@@ -44,9 +44,9 @@ diff -r 62fe9c3f7aa8 src/server/game/Entities/Player/Player.cpp
              // if the player is saved before worldportack (at logout for example)
              // this will be used instead of the current location in SaveToDB
  
-diff -r 62fe9c3f7aa8 src/server/game/Entities/Player/Player.h
---- a/src/server/game/Entities/Player/Player.h	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Entities/Player/Player.h	Tue Dec 21 18:29:45 2010 +0600
+diff -r 04ce0858ce41 src/server/game/Entities/Player/Player.h
+--- a/src/server/game/Entities/Player/Player.h	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Entities/Player/Player.h	Fri Dec 24 20:34:17 2010 +0600
 @@ -2584,6 +2584,26 @@
          float m_rest_bonus;
          RestType rest_type;
@@ -74,9 +74,9 @@ diff -r 62fe9c3f7aa8 src/server/game/Entities/Player/Player.h
          uint32 m_resetTalentsCost;
          time_t m_resetTalentsTime;
          uint32 m_usedTalentCount;
-diff -r 62fe9c3f7aa8 src/server/game/Entities/Unit/Unit.h
---- a/src/server/game/Entities/Unit/Unit.h	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Entities/Unit/Unit.h	Tue Dec 21 18:29:45 2010 +0600
+diff -r 04ce0858ce41 src/server/game/Entities/Unit/Unit.h
+--- a/src/server/game/Entities/Unit/Unit.h	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Entities/Unit/Unit.h	Fri Dec 24 20:34:17 2010 +0600
 @@ -2010,6 +2010,7 @@
      protected:
          explicit Unit ();
@@ -85,11 +85,11 @@ diff -r 62fe9c3f7aa8 src/server/game/Entities/Unit/Unit.h
          UnitAI *i_AI, *i_disabledAI;
  
          void _UpdateSpells(uint32 time);
-diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.cpp
---- a/src/server/game/Globals/ObjectMgr.cpp	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Globals/ObjectMgr.cpp	Tue Dec 21 18:29:45 2010 +0600
-@@ -5958,7 +5958,8 @@
-     sLog.outString();
+diff -r 04ce0858ce41 src/server/game/Globals/ObjectMgr.cpp
+--- a/src/server/game/Globals/ObjectMgr.cpp	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Globals/ObjectMgr.cpp	Fri Dec 24 20:34:17 2010 +0600
+@@ -5785,7 +5785,8 @@
+     sLog->outString();
  }
  
 -uint32 ObjectMgr::GetNearestTaxiNode(float x, float y, float z, uint32 mapid, uint32 team)
@@ -98,7 +98,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.cpp
  {
      bool found = false;
      float dist = 10000;
-@@ -5968,7 +5969,18 @@
+@@ -5795,7 +5796,18 @@
      {
          TaxiNodesEntry const* node = sTaxiNodesStore.LookupEntry(i);
  
@@ -118,7 +118,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.cpp
              continue;
  
          uint8  field   = (uint8)((i - 1) / 32);
-@@ -5978,7 +5990,7 @@
+@@ -5805,7 +5817,7 @@
          if ((sTaxiNodesMask[field] & submask) == 0)
              continue;
  
@@ -127,7 +127,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.cpp
          if (found)
          {
              if (dist2 < dist)
-@@ -5994,7 +6006,9 @@
+@@ -5821,7 +5833,9 @@
              id = i;
          }
      }
@@ -138,9 +138,9 @@ diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.cpp
      return id;
  }
  
-diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.h
---- a/src/server/game/Globals/ObjectMgr.h	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Globals/ObjectMgr.h	Tue Dec 21 18:29:45 2010 +0600
+diff -r 04ce0858ce41 src/server/game/Globals/ObjectMgr.h
+--- a/src/server/game/Globals/ObjectMgr.h	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Globals/ObjectMgr.h	Fri Dec 24 20:34:17 2010 +0600
 @@ -680,7 +680,7 @@
          uint32 GetPlayerAccountIdByGUID(const uint64 &guid) const;
          uint32 GetPlayerAccountIdByPlayerName(const std::string& name) const;
@@ -150,9 +150,9 @@ diff -r 62fe9c3f7aa8 src/server/game/Globals/ObjectMgr.h
          void GetTaxiPath(uint32 source, uint32 destination, uint32 &path, uint32 &cost);
          uint32 GetTaxiMountDisplayId(uint32 id, uint32 team, bool allowed_alt_team = false);
  
-diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cpp
---- a/src/server/game/Server/Protocol/Handlers/MovementHandler.cpp	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Server/Protocol/Handlers/MovementHandler.cpp	Tue Dec 21 18:29:45 2010 +0600
+diff -r 04ce0858ce41 src/server/game/Server/Protocol/Handlers/MovementHandler.cpp
+--- a/src/server/game/Server/Protocol/Handlers/MovementHandler.cpp	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Server/Protocol/Handlers/MovementHandler.cpp	Fri Dec 24 20:34:17 2010 +0600
 @@ -31,6 +31,12 @@
  #include "WaypointMovementGenerator.h"
  #include "InstanceSaveMgr.h"
@@ -187,7 +187,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +        if (plMover && !plMover->m_transport && !plMover->m_temp_transport)
          {
              // elevators also cause the client to send MOVEMENTFLAG_ONTRANSPORT - just unmount if the guid can be found in the transport list
-             for (MapManager::TransportSet::const_iterator iter = sMapMgr.m_Transports.begin(); iter != sMapMgr.m_Transports.end(); ++iter)
+             for (MapManager::TransportSet::const_iterator iter = sMapMgr->m_Transports.begin(); iter != sMapMgr->m_Transports.end(); ++iter)
 @@ -311,27 +323,41 @@
                      break;
                  }
@@ -299,7 +299,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                if (bMistimingModulo)
 +                {
 +                    #ifdef ANTICHEAT_EXCEPTION_INFO
-+                    sLog.outError("AC2-%s, mistiming exception #%d, mistiming: %dms", plMover->GetName(), plMover->m_anti_MistimingCount, sync_time);
++                    sLog->outError("AC2-%s, mistiming exception #%d, mistiming: %dms", plMover->GetName(), plMover->m_anti_MistimingCount, sync_time);
 +                    #endif
 +                    check_passed = false;
 +                }                   
@@ -398,7 +398,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                if (no_fly_auras && no_swim_in_water && plMover->m_anti_JumpBaseZ != 0 && JumpHeight < plMover->m_anti_Last_VSpeed)
 +                {
 +                    #ifdef ANTICHEAT_EXCEPTION_INFO
-+                    sLog.outError("AC2-%s, AntiGravity exception. JumpHeight = %f, Allowed Vertical Speed = %f",
++                    sLog->outError("AC2-%s, AntiGravity exception. JumpHeight = %f, Allowed Vertical Speed = %f",
 +                        plMover->GetName(), JumpHeight, plMover->m_anti_Last_VSpeed);
 +                    #endif
 +                    check_passed = false;
@@ -463,9 +463,9 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                {
 +                    #ifdef ANTICHEAT_EXCEPTION_INFO
 +                    if (real_delta < 4900.0f)
-+                        sLog.outError("AC2-%s, speed exception | cDelta=%f aDelta=%f | cSpeed=%f lSpeed=%f deltaTime=%f", plMover->GetName(), real_delta, allowed_delta, current_speed, plMover->m_anti_Last_HSpeed, time_delta);
++                        sLog->outError("AC2-%s, speed exception | cDelta=%f aDelta=%f | cSpeed=%f lSpeed=%f deltaTime=%f", plMover->GetName(), real_delta, allowed_delta, current_speed, plMover->m_anti_Last_HSpeed, time_delta);
 +                    else
-+                        sLog.outError("AC2-%s, teleport exception | cDelta=%f aDelta=%f | cSpeed=%f lSpeed=%f deltaTime=%f", plMover->GetName(), real_delta, allowed_delta, current_speed, plMover->m_anti_Last_HSpeed, time_delta);
++                        sLog->outError("AC2-%s, teleport exception | cDelta=%f aDelta=%f | cSpeed=%f lSpeed=%f deltaTime=%f", plMover->GetName(), real_delta, allowed_delta, current_speed, plMover->m_anti_Last_HSpeed, time_delta);
 +                    #endif
 +                    check_passed = false;
 +                    if (vehMover)
@@ -477,7 +477,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                if (delta_z < plMover->m_anti_Last_VSpeed && plMover->m_anti_JumpCount == 0 && tg_z > 2.37f)
 +                {
 +                    #ifdef ANTICHEAT_EXCEPTION_INFO
-+                    sLog.outError("AC2-%s, mountain exception | tg_z=%f", plMover->GetName(), tg_z);
++                    sLog->outError("AC2-%s, mountain exception | tg_z=%f", plMover->GetName(), tg_z);
 +                    #endif
 +                    check_passed = false;
 +                    if (vehMover)
@@ -488,7 +488,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                if (no_fly_auras && !no_fly_flags)
 +                {
 +                    #ifdef ANTICHEAT_EXCEPTION_INFO // Aura numbers: 201, 206, 207, 208, 209, 211
-+                    sLog.outError("AC2-%s, flight exception. {SPELL_AURA_FLY=[%X]} {SPELL_AURA_MOD_INCREASE_MOUNTED_FLIGHT_SPEED=[%X]} {SPELL_AURA_MOD_INCREASE_FLIGHT_SPEED=[%X]} {SPELL_AURA_MOD_MOUNTED_FLIGHT_SPEED_ALWAYS=[%X]} {SPELL_AURA_MOD_FLIGHT_SPEED_NOT_STACK=[%X]} {plMover->GetVehicle()=[%X]}",
++                    sLog->outError("AC2-%s, flight exception. {SPELL_AURA_FLY=[%X]} {SPELL_AURA_MOD_INCREASE_MOUNTED_FLIGHT_SPEED=[%X]} {SPELL_AURA_MOD_INCREASE_FLIGHT_SPEED=[%X]} {SPELL_AURA_MOD_MOUNTED_FLIGHT_SPEED_ALWAYS=[%X]} {SPELL_AURA_MOD_FLIGHT_SPEED_NOT_STACK=[%X]} {plMover->GetVehicle()=[%X]}",
 +                        plMover->GetName(),
 +                        plMover->HasAuraType(SPELL_AURA_FLY), plMover->HasAuraType(SPELL_AURA_MOD_INCREASE_MOUNTED_FLIGHT_SPEED),
 +                        plMover->HasAuraType(SPELL_AURA_MOD_INCREASE_FLIGHT_SPEED), plMover->HasAuraType(SPELL_AURA_MOD_MOUNTED_FLIGHT_SPEED_ALWAYS),
@@ -518,7 +518,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                if (no_waterwalk_auras && !no_waterwalk_flags)
 +                {
 +                    #ifdef ANTICHEAT_EXCEPTION_INFO
-+                    sLog.outError("AC2-%s, waterwalk exception. [%X]{SPELL_AURA_WATER_WALK=[%X]}",
++                    sLog->outError("AC2-%s, waterwalk exception. [%X]{SPELL_AURA_WATER_WALK=[%X]}",
 +                        plMover->GetName(), movementInfo.flags, plMover->HasAuraType(SPELL_AURA_WATER_WALK));
 +                    #endif
 +                    check_passed = false;
@@ -551,12 +551,12 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +                        if (plane_z > 0.1f || plane_z < -0.1f)
 +                        {
 +                            #ifdef ANTICHEAT_DEBUG
-+                            sLog.outDebug("AC2-%s, teleport to plane exception. plane_z: %f", plMover->GetName(), plane_z);
++                            sLog->outDebug("AC2-%s, teleport to plane exception. plane_z: %f", plMover->GetName(), plane_z);
 +                            #endif
 +                            #ifdef ANTICHEAT_EXCEPTION_INFO
 +                            if (plMover->m_anti_TeleToPlane_Count > World::GetTeleportToPlaneAlarms())
 +                            {
-+                                sLog.outError("AC2-%s, teleport to plane exception. Exception count: %d", plMover->GetName(), plMover->m_anti_TeleToPlane_Count);
++                                sLog->outError("AC2-%s, teleport to plane exception. Exception count: %d", plMover->GetName(), plMover->m_anti_TeleToPlane_Count);
 +                                /* Disabled, not passive at all, and apparently causing crashes:
 +                                sWorld.SendWorldText(3, strcat("Kicking cheater: ", plMover->GetName()));
 +                                KickPlayer();
@@ -597,7 +597,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +        // movement anticheat
 +        if (plMover->m_anti_AlarmCount > 0)
 +        {
-+            sLog.outError("AC2-%s produce %d anticheat alarms", plMover->GetName(), plMover->m_anti_AlarmCount);
++            sLog->outError("AC2-%s produce %d anticheat alarms", plMover->GetName(), plMover->m_anti_AlarmCount);
 +            plMover->m_anti_AlarmCount = 0;
 +        }
 +        // end movement anticheat
@@ -630,8 +630,8 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
 +    // Save movement flags
 +    _player->SetUnitMovementFlags(movementInfo.flags);
 +    #ifdef ANTICHEAT_DEBUG
-+    sLog.outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK: time: %d, fall time: %d | xyzo: %f,%f,%fo(%f) flags[%X]", GetPlayer()->GetName(), movementInfo.time, movementInfo.fallTime, movementInfo.x, movementInfo.y, movementInfo.z, movementInfo.o, movementInfo.flags);
-+    sLog.outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK additional: Vspeed: %f, Hspeed: %f", GetPlayer()->GetName(), movementInfo.j_unk, movementInfo.j_xyspeed);
++    sLog->outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK: time: %d, fall time: %d | xyzo: %f,%f,%fo(%f) flags[%X]", GetPlayer()->GetName(), movementInfo.time, movementInfo.fallTime, movementInfo.x, movementInfo.y, movementInfo.z, movementInfo.o, movementInfo.flags);
++    sLog->outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK additional: Vspeed: %f, Hspeed: %f", GetPlayer()->GetName(), movementInfo.j_unk, movementInfo.j_xyspeed);
 +    #endif
 +
 +    _player->m_movementInfo = movementInfo;
@@ -643,15 +643,15 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/MovementHandler.cp
  }
  
  void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
-diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
---- a/src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp	Tue Dec 21 18:29:45 2010 +0600
+diff -r 04ce0858ce41 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
+--- a/src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp	Fri Dec 24 20:34:17 2010 +0600
 @@ -49,7 +49,7 @@
          return;
      }
  
--    uint32 curloc = sObjectMgr.GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam());
-+    uint32 curloc = sObjectMgr.GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam(), 0);
+-    uint32 curloc = sObjectMgr->GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam());
++    uint32 curloc = sObjectMgr->GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam(),0);
  
      // not found nearest
      if (curloc == 0)
@@ -659,8 +659,8 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
  void WorldSession::SendTaxiMenu(Creature* unit)
  {
      // find current node
--    uint32 curloc = sObjectMgr.GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam());
-+    uint32 curloc = sObjectMgr.GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam(), 0);
+-    uint32 curloc = sObjectMgr->GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam());
++    uint32 curloc = sObjectMgr->GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam(),0);
  
      if (curloc == 0)
          return;
@@ -668,8 +668,8 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
  bool WorldSession::SendLearnNewTaxiNode(Creature* unit)
  {
      // find current node
--    uint32 curloc = sObjectMgr.GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam());
-+    uint32 curloc = sObjectMgr.GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam(), 0);
+-    uint32 curloc = sObjectMgr->GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam());
++    uint32 curloc = sObjectMgr->GetNearestTaxiNode(unit->GetPositionX(),unit->GetPositionY(),unit->GetPositionZ(),unit->GetMapId(),GetPlayer()->GetTeam(),0);
  
      if (curloc == 0)
          return true;                                        // `true` send to avoid WorldSession::SendTaxiMenu call with one more curlock seartch with same false result.
@@ -723,7 +723,7 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
 +	}
 +    // movment anticheat
 +    const uint32 curloc = 
-+    sObjectMgr.GetNearestTaxiNode(movementInfo.pos.GetPositionX(),movementInfo.pos.GetPositionY(),movementInfo.pos.GetPositionZ(),GetPlayer()->GetMapId(),GetPlayer()->GetTeam(), curDest);
++    sObjectMgr->GetNearestTaxiNode(movementInfo.pos.GetPositionX(),movementInfo.pos.GetPositionY(),movementInfo.pos.GetPositionZ(),GetPlayer()->GetMapId(),GetPlayer()->GetTeam(), curDest);
 +    // end movement anticheat
  
 -    TaxiNodesEntry const* curDestNode = sTaxiNodesStore.LookupEntry(curDest);
@@ -773,10 +773,10 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
 +    {
 +         // current source node for next destination
 +        uint32 sourcenode = GetPlayer()->m_taxi.GetTaxiSource();
-+        uint16 MountId = sObjectMgr.GetTaxiMountDisplayId(sourcenode, GetPlayer()->GetTeam());
++        uint16 MountId = sObjectMgr->GetTaxiMountDisplayId(sourcenode, GetPlayer()->GetTeam());
 +
 +        uint32 path, cost;
-+        sObjectMgr.GetTaxiPath(sourcenode, curDest, path, cost);
++        sObjectMgr->GetTaxiPath(sourcenode, curDest, path, cost);
 +
 +        if (path && MountId)
 +            SendDoFlight(MountId, path, 1);                 // skip start fly node
@@ -788,10 +788,10 @@ diff -r 62fe9c3f7aa8 src/server/game/Server/Protocol/Handlers/TaxiHandler.cpp
  
      uint32 destinationnode = GetPlayer()->m_taxi.NextTaxiDestination();
      if (destinationnode > 0)                              // if more destinations to go
-diff -r 62fe9c3f7aa8 src/server/game/World/World.cpp
---- a/src/server/game/World/World.cpp	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/World/World.cpp	Tue Dec 21 18:29:45 2010 +0600
-@@ -84,7 +84,11 @@
+diff -r 04ce0858ce41 src/server/game/World/World.cpp
+--- a/src/server/game/World/World.cpp	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/World/World.cpp	Fri Dec 24 20:34:17 2010 +0600
+@@ -83,7 +83,11 @@
  int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
  int32 World::m_visibility_notify_periodInInstances  = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
  int32 World::m_visibility_notify_periodInBGArenas   = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
@@ -804,52 +804,52 @@ diff -r 62fe9c3f7aa8 src/server/game/World/World.cpp
  /// World constructor
  World::World()
  {
-@@ -557,6 +561,41 @@
-         sLog.outError("DurabilityLossChance.Block (%f) must be >=0. Using 0.0 instead.",rate_values[RATE_DURABILITY_LOSS_BLOCK]);
+@@ -556,6 +560,41 @@
+         sLog->outError("DurabilityLossChance.Block (%f) must be >=0. Using 0.0 instead.",rate_values[RATE_DURABILITY_LOSS_BLOCK]);
          rate_values[RATE_DURABILITY_LOSS_BLOCK] = 0.0f;
      }
 +    // movement anticheat
-+    m_EnableMvAnticheat = sConfig.GetBoolDefault("Anticheat.Movement.Enable", true);
-+    m_TeleportToPlaneAlarms = sConfig.GetIntDefault("Anticheat.Movement.TeleportToPlaneAlarms", 50);
++    m_EnableMvAnticheat = sConfig->GetBoolDefault("Anticheat.Movement.Enable", true);
++    m_TeleportToPlaneAlarms = sConfig->GetIntDefault("Anticheat.Movement.TeleportToPlaneAlarms", 50);
 +    if (m_TeleportToPlaneAlarms < 20)
 +    {
-+        sLog.outError("Anticheat.Movement.TeleportToPlaneAlarms (%d) must be >= 20. Using 20 instead.", m_TeleportToPlaneAlarms);
++        sLog->outError("Anticheat.Movement.TeleportToPlaneAlarms (%d) must be >= 20. Using 20 instead.", m_TeleportToPlaneAlarms);
 +        m_TeleportToPlaneAlarms = 20;
 +    }
 +    if (m_TeleportToPlaneAlarms > 100)
 +    {
-+        sLog.outError("Anticheat.Movement.TeleportToPlaneAlarms (%d) must be <= 100. Using 100 instead.", m_TeleportToPlaneAlarms);
++        sLog->outError("Anticheat.Movement.TeleportToPlaneAlarms (%d) must be <= 100. Using 100 instead.", m_TeleportToPlaneAlarms);
 +        m_TeleportToPlaneAlarms = 100;
 +    }
-+    m_MistimingDelta = sConfig.GetIntDefault("Anticheat.Movement.MistimingDelta", 15000);
++    m_MistimingDelta = sConfig->GetIntDefault("Anticheat.Movement.MistimingDelta", 15000);
 +    if (m_MistimingDelta < 5000)
 +    {
-+        sLog.outError("Anticheat.Movement.m_MistimingDelta (%d) must be >= 5000ms. Using 5000ms instead.", m_MistimingDelta);
++        sLog->outError("Anticheat.Movement.m_MistimingDelta (%d) must be >= 5000ms. Using 5000ms instead.", m_MistimingDelta);
 +        m_MistimingDelta = 5000;
 +    }
 +    if (m_MistimingDelta > 50000)
 +    {
-+        sLog.outError("Anticheat.Movement.m_MistimingDelta (%d) must be <= 50000ms. Using 50000ms instead.", m_MistimingDelta);
++        sLog->outError("Anticheat.Movement.m_MistimingDelta (%d) must be <= 50000ms. Using 50000ms instead.", m_MistimingDelta);
 +        m_MistimingDelta = 50000;
 +    }
-+    m_MistimingAlarms = sConfig.GetIntDefault("Anticheat.Movement.MistimingAlarms", 200);
++    m_MistimingAlarms = sConfig->GetIntDefault("Anticheat.Movement.MistimingAlarms", 200);
 +    if (m_MistimingAlarms < 100)
 +    {
-+        sLog.outError("Anticheat.Movement.MistimingAlarms (%d) must be >= 100. Using 100 instead.", m_MistimingAlarms);
++        sLog->outError("Anticheat.Movement.MistimingAlarms (%d) must be >= 100. Using 100 instead.", m_MistimingAlarms);
 +        m_MistimingAlarms = 100;
 +    }
 +    if (m_MistimingAlarms > 500)
 +    {
-+        sLog.outError("Anticheat.Movement.m_MistimingAlarms (%d) must be <= 500. Using 500 instead.", m_MistimingAlarms);
++        sLog->outError("Anticheat.Movement.m_MistimingAlarms (%d) must be <= 500. Using 500 instead.", m_MistimingAlarms);
 +        m_MistimingAlarms = 500;
 +    }
      ///- Read other configuration items from the config file
  
-     m_bool_configs[CONFIG_DURABILITY_LOSS_IN_PVP] = sConfig.GetBoolDefault("DurabilityLoss.InPvP", false);
-diff -r 62fe9c3f7aa8 src/server/game/World/World.h
---- a/src/server/game/World/World.h	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/game/World/World.h	Tue Dec 21 18:29:45 2010 +0600
-@@ -712,6 +712,12 @@
+     m_bool_configs[CONFIG_DURABILITY_LOSS_IN_PVP] = sConfig->GetBoolDefault("DurabilityLoss.InPvP", false);
+diff -r 04ce0858ce41 src/server/game/World/World.h
+--- a/src/server/game/World/World.h	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/game/World/World.h	Fri Dec 24 20:34:17 2010 +0600
+@@ -710,6 +710,12 @@
          static int32 GetVisibilityNotifyPeriodOnContinents(){ return m_visibility_notify_periodOnContinents; }
          static int32 GetVisibilityNotifyPeriodInInstances() { return m_visibility_notify_periodInInstances;  }
          static int32 GetVisibilityNotifyPeriodInBGArenas()  { return m_visibility_notify_periodInBGArenas;   }
@@ -862,7 +862,7 @@ diff -r 62fe9c3f7aa8 src/server/game/World/World.h
  
          void ProcessCliCommands();
          void QueueCliCommand(CliCommandHolder* commandHolder) { cliCmdQueue.add(commandHolder); }
-@@ -803,7 +809,11 @@
+@@ -801,7 +807,11 @@
          static int32 m_visibility_notify_periodOnContinents;
          static int32 m_visibility_notify_periodInInstances;
          static int32 m_visibility_notify_periodInBGArenas;
@@ -875,10 +875,10 @@ diff -r 62fe9c3f7aa8 src/server/game/World/World.h
          // CLI command holder to be thread safe
          ACE_Based::LockedQueue<CliCommandHolder*,ACE_Thread_Mutex> cliCmdQueue;
  
-diff -r 62fe9c3f7aa8 src/server/worldserver/worldserver.conf.dist
---- a/src/server/worldserver/worldserver.conf.dist	Mon Dec 20 14:55:36 2010 +0100
-+++ b/src/server/worldserver/worldserver.conf.dist	Tue Dec 21 18:29:45 2010 +0600
-@@ -2480,6 +2480,30 @@
+diff -r 04ce0858ce41 src/server/worldserver/worldserver.conf.dist
+--- a/src/server/worldserver/worldserver.conf.dist	Fri Dec 24 13:03:52 2010 +0100
++++ b/src/server/worldserver/worldserver.conf.dist	Fri Dec 24 20:34:17 2010 +0600
+@@ -2473,6 +2473,30 @@
  #
  ###################################################################################################
  
