@@ -261,6 +261,7 @@ if (isset($_GET[step]) && $_GET[step] == 2)
     else 
     { 
         $sql = mysql_query("SELECT * FROM `arena_leavers_temp` where  
+    			    game_time_end <> '' and
                             game_time_end - game_time_start < {$max_delta}") or die (mysql_error()); 
         while ($row=mysql_fetch_array($sql)) 
             mysql_query ("UPDATE arena_leavers_stat  
