@@ -23,6 +23,7 @@
         <activity android:name="Schedule" android:screenOrientation="portrait"></activity>
         <activity android:name=".NewLocation" android:label="@string/token_location_chooze">
         </activity>
+        <activity android:name="Location"></activity>
     </application>
 
 </manifest>

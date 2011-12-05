@@ -55,12 +55,14 @@ public class TimeTableAppActivity extends Activity {
 	}
 
 	void ChangeLocation(){
-		Intent intent = new Intent(this, NewLocation.class);
-		intent.putExtra(NewLocation.COUNTRY, _countryTV.getText());
-		intent.putExtra(NewLocation.CITY, _cityTV.getText());
-		intent.putExtra(NewLocation.CATEGORY, _categoryTV.getText());
-		intent.putExtra(NewLocation.ORGANIZATION, _organizationTV.getText());
-		startActivityForResult(intent, LOCATION_REQUEST);
+//		Intent intent = new Intent(this, NewLocation.class);
+//		intent.putExtra(NewLocation.COUNTRY, _countryTV.getText());
+//		intent.putExtra(NewLocation.CITY, _cityTV.getText());
+//		intent.putExtra(NewLocation.CATEGORY, _categoryTV.getText());
+//		intent.putExtra(NewLocation.ORGANIZATION, _organizationTV.getText());
+//		startActivityForResult(intent, LOCATION_REQUEST);
+		Intent intent = new Intent(this, Location.class);
+		startActivity(intent);
 	}
 	
 	void ShowTimeTables(){
