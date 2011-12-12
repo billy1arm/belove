@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/show_timetables"
+          android:title="@string/token_saved_timetables" />
+    <item android:id="@+id/change_location"
+          android:title="@string/token_change_location" />
+    <item android:id="@+id/synchonize" 
+    	  android:title="@string/token_refresh"/>
+   
+</menu>
