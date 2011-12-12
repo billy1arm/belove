@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TimeTable</string>
+    <string name="token_change_location">Change Current Location</string>
+    <string name="token_saved_timetables">Show Timetables</string>
+    <string name="token_save_location">Save Location</string>
+    <string name="token_load_location">Load Location</string>
+    <string name="token_refresh">Refresh</string>
+    <string name="token_country">Country</string>
+    <string name="token_city">City</string>
+    <string name="token_category">Category</string>
+    <string name="token_organization">Organization</string>
+    <string name="token_submit">Submit</string>
+    <string name="token_location_chooze">Chooze location</string>
+    <string-array name="countries_array">
+        <item>Russia</item>
+        <item>Ukraine</item>
+        <item>Kazakhstan</item>
+        <item>Belarus</item>
+    </string-array>
+    <string-array name="cities_array">
+        <item>Tomsk</item>
+        <item>Novosibirsk</item>
+        <item>Moscow</item>
+    </string-array>
+    <string-array name="categories_array">
+        <item>Bar</item>
+        <item>Club</item>
+        <item>Caffee</item>
+        <item>Music</item>
+    </string-array>
+    <string-array name="organizations_array">
+        <item>Pizza-Rio</item>
+        <item>Metro</item>
+        <item>Bulanjee</item>
+        <item>Premiere</item>
+    </string-array>
+
+</resources>
